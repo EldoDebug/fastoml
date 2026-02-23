@@ -14,6 +14,8 @@ A high-performance, single-header TOML parser and serializer written in C.
 - **Parser reuse** — reset and parse again without reallocating
 - **Cross-platform** — Windows, Linux, macOS
 
+> **C++ users:** [fastoml-cpp](https://github.com/EldoDebug/fastoml-cpp) provides a C++23 wrapper with dot-notation access, fluent builder API, and compile-time struct mapping.
+
 ## Quick Start
 
 Copy `fastoml.h` into your project. In **exactly one** `.c` file, define the implementation:
@@ -209,10 +211,6 @@ Parse throughput measured with [Google Benchmark](https://github.com/google/benc
 | invalid | **3.9x** | **49x** |
 
 > All parsers create and destroy their parser state in every iteration for a fair comparison. I/O is excluded — only the parse call is measured.
-
-## C++ Wrapper
-
-[fastoml-cpp](https://github.com/EldoDebug/fastoml-cpp) — A C++23 wrapper providing dot-notation access, fluent builder API, and compile-time struct mapping.
 
 ## Building
 
