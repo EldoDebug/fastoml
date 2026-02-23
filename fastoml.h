@@ -350,10 +350,9 @@ struct fastoml_builder {
 
 struct fastoml_parser {
     fastoml_options opt;
+    int simd_supported;
     fastoml_arena arena;
     fastoml_document doc;
-    uint8_t char_lut[256];
-    int simd_supported;
 };
 
 typedef struct fastoml_reader {
@@ -471,6 +470,26 @@ FASTOML_INLINE void fastoml_reader_advance_span_no_nl(fastoml_reader* r, size_t 
     }
     r->pos += n;
     r->col += (uint32_t)n;
+}
+
+static void fastoml_reader_advance_span_lf(fastoml_reader* r, const char* s, size_t n) {
+    size_t i = 0;
+    size_t last = 0;
+    uint32_t newlines = 0;
+    while (i < n) {
+        if (s[i] == '\n') {
+            last = i + 1u;
+            newlines += 1u;
+        }
+        ++i;
+    }
+    r->pos += n;
+    if (newlines == 0u) {
+        r->col += (uint32_t)n;
+        return;
+    }
+    r->line += newlines;
+    r->col = 1u + (uint32_t)(n - last);
 }
 
 static fastoml_status fastoml_reader_advance_newline(fastoml_reader* r) {
@@ -815,6 +834,34 @@ static void* fastoml_arena_alloc(fastoml_arena* arena, size_t size, size_t align
     }
 }
 
+static void* fastoml_arena_grow_last_or_alloc(
+    fastoml_arena* arena,
+    void* prev_ptr,
+    size_t prev_size,
+    size_t new_size,
+    size_t align) {
+    if (new_size == 0u) {
+        new_size = 1u;
+    }
+    if (align < sizeof(void*)) {
+        align = sizeof(void*);
+    }
+    if (prev_ptr && prev_size <= new_size && arena->current) {
+        fastoml_arena_block* blk = arena->current;
+        unsigned char* p = (unsigned char*)prev_ptr;
+        if (p >= blk->data && p <= blk->data + blk->cap) {
+            const size_t start = (size_t)(p - blk->data);
+            if (fastoml_align_up(start, align) == start &&
+                start + prev_size == blk->used &&
+                start + new_size <= blk->cap) {
+                blk->used = start + new_size;
+                return prev_ptr;
+            }
+        }
+    }
+    return fastoml_arena_alloc(arena, new_size, align);
+}
+
 typedef struct fastoml_tmpbuf {
     char* ptr;
     size_t len;
@@ -904,6 +951,56 @@ static fastoml_status fastoml_tmpbuf_finish(fastoml_reader* r, fastoml_tmpbuf* b
         out->len = (uint32_t)b->len;
     }
     fastoml_tmpbuf_release(r, b);
+    return FASTOML_OK;
+}
+
+typedef struct fastoml_arena_strbuf {
+    char* ptr;
+    size_t len;
+    size_t cap;
+} fastoml_arena_strbuf;
+
+static fastoml_status fastoml_arena_strbuf_init(fastoml_reader* r, fastoml_arena_strbuf* b, size_t cap) {
+    if (cap == 0u) {
+        cap = 1u;
+    }
+    b->ptr = (char*)fastoml_arena_alloc(&r->parser->arena, cap + 1u, sizeof(char));
+    if (!b->ptr) {
+        return fastoml_fail(r, FASTOML_ERR_OOM);
+    }
+    b->len = 0u;
+    b->cap = cap;
+    return FASTOML_OK;
+}
+
+FASTOML_INLINE int fastoml_arena_strbuf_push_byte(fastoml_arena_strbuf* b, char v) {
+    if (!b || b->len >= b->cap) {
+        return 0;
+    }
+    b->ptr[b->len++] = v;
+    return 1;
+}
+
+FASTOML_INLINE int fastoml_arena_strbuf_push_mem(fastoml_arena_strbuf* b, const char* src, size_t n) {
+    if (!b || n > b->cap - b->len) {
+        return 0;
+    }
+    if (n > 0u) {
+        memcpy(b->ptr + b->len, src, n);
+        b->len += n;
+    }
+    return 1;
+}
+
+static fastoml_status fastoml_arena_strbuf_finish(fastoml_arena_strbuf* b, fastoml_slice* out) {
+    if (!b) {
+        return FASTOML_OK;
+    }
+    b->ptr[b->len] = '\0';
+    if (out) {
+        out->ptr = b->ptr;
+        out->len = (uint32_t)b->len;
+    }
     return FASTOML_OK;
 }
 
@@ -1089,15 +1186,25 @@ static fastoml_node* fastoml_new_node(fastoml_reader* r, fastoml_node_kind kind)
 
 static int fastoml_table_reserve(fastoml_reader* r, fastoml_node* table, uint32_t new_cap) {
     fastoml_kv* items;
+    fastoml_kv* old_items;
+    const uint32_t old_cap = table ? table->as.table.cap : 0u;
+    const size_t old_bytes = sizeof(fastoml_kv) * (size_t)old_cap;
+    const size_t new_bytes = sizeof(fastoml_kv) * (size_t)new_cap;
     if (table->kind != FASTOML_NODE_TABLE) {
         return 0;
     }
-    items = (fastoml_kv*)fastoml_arena_alloc(&r->parser->arena, sizeof(fastoml_kv) * new_cap, sizeof(void*));
+    old_items = table->as.table.items;
+    items = (fastoml_kv*)fastoml_arena_grow_last_or_alloc(
+        &r->parser->arena,
+        old_items,
+        old_bytes,
+        new_bytes,
+        sizeof(void*));
     if (!items) {
         return 0;
     }
-    if (table->as.table.items && table->as.table.len > 0) {
-        memcpy(items, table->as.table.items, sizeof(fastoml_kv) * table->as.table.len);
+    if (items != old_items && old_items && table->as.table.len > 0u) {
+        memcpy(items, old_items, sizeof(fastoml_kv) * (size_t)table->as.table.len);
     }
     table->as.table.items = items;
     table->as.table.cap = new_cap;
@@ -1106,15 +1213,25 @@ static int fastoml_table_reserve(fastoml_reader* r, fastoml_node* table, uint32_
 
 static int fastoml_array_reserve(fastoml_reader* r, fastoml_node* array, uint32_t new_cap) {
     fastoml_node** items;
+    fastoml_node** old_items;
+    const uint32_t old_cap = array ? array->as.array.cap : 0u;
+    const size_t old_bytes = sizeof(fastoml_node*) * (size_t)old_cap;
+    const size_t new_bytes = sizeof(fastoml_node*) * (size_t)new_cap;
     if (array->kind != FASTOML_NODE_ARRAY) {
         return 0;
     }
-    items = (fastoml_node**)fastoml_arena_alloc(&r->parser->arena, sizeof(fastoml_node*) * new_cap, sizeof(void*));
+    old_items = array->as.array.items;
+    items = (fastoml_node**)fastoml_arena_grow_last_or_alloc(
+        &r->parser->arena,
+        old_items,
+        old_bytes,
+        new_bytes,
+        sizeof(void*));
     if (!items) {
         return 0;
     }
-    if (array->as.array.items && array->as.array.len > 0) {
-        memcpy(items, array->as.array.items, sizeof(fastoml_node*) * array->as.array.len);
+    if (items != old_items && old_items && array->as.array.len > 0u) {
+        memcpy(items, old_items, sizeof(fastoml_node*) * (size_t)array->as.array.len);
     }
     array->as.array.items = items;
     array->as.array.cap = new_cap;
@@ -1165,11 +1282,16 @@ static int fastoml_table_rebuild_hash(fastoml_reader* r, fastoml_node* table, ui
         return 0;
     }
 
-    slots = (uint32_t*)fastoml_arena_alloc(&r->parser->arena, sizeof(uint32_t) * cap, sizeof(uint32_t));
+    slots = (uint32_t*)fastoml_arena_grow_last_or_alloc(
+        &r->parser->arena,
+        table->as.table.hash_slots,
+        sizeof(uint32_t) * (size_t)table->as.table.hash_cap,
+        sizeof(uint32_t) * (size_t)cap,
+        sizeof(uint32_t));
     if (!slots) {
         return 0;
     }
-    memset(slots, 0, sizeof(uint32_t) * cap);
+    memset(slots, 0, sizeof(uint32_t) * (size_t)cap);
 
     table->as.table.hash_slots = slots;
     table->as.table.hash_cap = cap;
@@ -1502,6 +1624,8 @@ static int fastoml_utf8_encode(uint32_t cp, char* out, size_t* out_len) {
 }
 static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multiline, fastoml_slice* out, int for_key) {
     fastoml_status s = FASTOML_OK;
+    fastoml_arena_strbuf sb;
+    fastoml_arena_strbuf* sb_ptr = NULL;
 
     if (multiline) {
         if (fastoml_reader_peek(r) != '"' || fastoml_reader_peek_n(r, 1) != '"' || fastoml_reader_peek_n(r, 2) != '"') {
@@ -1568,21 +1692,22 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
                 if (run >= 3u) {
                     const size_t lit = run - 3u;
                     if (run > 5u) {
-                        fastoml_reader_advance_span_no_nl(r, p - r->pos);
+                        fastoml_reader_advance_span_lf(r, r->src + r->pos, p - r->pos);
                         return fastoml_fail(r, FASTOML_ERR_SYNTAX);
                     }
                     if (out) {
                         out->ptr = r->src + start;
                         out->len = (uint32_t)((p - start) + lit);
                     }
-                    fastoml_reader_advance_span_no_nl(r, (p + run) - r->pos);
+                    fastoml_reader_advance_span_lf(r, r->src + r->pos, p - r->pos);
+                    fastoml_reader_advance_span_no_nl(r, run);
                     return FASTOML_OK;
                 }
                 p += run;
                 continue;
             }
             if ((c < 0x20 && c != '\t' && c != '\n') || c == 0x7F) {
-                fastoml_reader_advance_span_no_nl(r, p - r->pos);
+                fastoml_reader_advance_span_lf(r, r->src + r->pos, p - r->pos);
                 return fastoml_fail(r, FASTOML_ERR_SYNTAX);
             }
             ++p;
@@ -1590,15 +1715,20 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
     }
 
     {
-        fastoml_tmpbuf tmp;
-        fastoml_tmpbuf_init(&tmp);
+        if (out) {
+            s = fastoml_arena_strbuf_init(r, &sb, r->len - r->pos);
+            if (s != FASTOML_OK) {
+                return s;
+            }
+            sb_ptr = &sb;
+        }
 
         while (!fastoml_reader_eof(r)) {
             const unsigned char c = fastoml_reader_peek(r);
 
             if (!multiline && c == '"') {
                 fastoml_reader_advance_byte(r);
-                return fastoml_tmpbuf_finish(r, &tmp, out);
+                return fastoml_arena_strbuf_finish(sb_ptr, out);
             }
 
             if (multiline && c == '"') {
@@ -1609,13 +1739,11 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
                 if (run >= 3) {
                     size_t lit;
                     if (run > 5) {
-                        fastoml_tmpbuf_release(r, &tmp);
                         return fastoml_fail(r, FASTOML_ERR_SYNTAX);
                     }
                     lit = run - 3;
                     if (lit > 0u) {
-                        if (!fastoml_tmpbuf_push_mem(r, &tmp, r->src + r->pos, lit)) {
-                            fastoml_tmpbuf_release(r, &tmp);
+                        if (sb_ptr && !fastoml_arena_strbuf_push_mem(sb_ptr, r->src + r->pos, lit)) {
                             return fastoml_fail(r, FASTOML_ERR_OOM);
                         }
                     }
@@ -1623,10 +1751,9 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
                         fastoml_reader_advance_byte(r);
                         run -= 1;
                     }
-                    return fastoml_tmpbuf_finish(r, &tmp, out);
+                    return fastoml_arena_strbuf_finish(sb_ptr, out);
                 }
-                if (!fastoml_tmpbuf_push_mem(r, &tmp, r->src + r->pos, run)) {
-                    fastoml_tmpbuf_release(r, &tmp);
+                if (sb_ptr && !fastoml_arena_strbuf_push_mem(sb_ptr, r->src + r->pos, run)) {
                     return fastoml_fail(r, FASTOML_ERR_OOM);
                 }
                 fastoml_reader_advance_span_no_nl(r, run);
@@ -1636,70 +1763,61 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
             if (c == '\\') {
                 fastoml_reader_advance_byte(r);
                 if (fastoml_reader_eof(r)) {
-                    fastoml_tmpbuf_release(r, &tmp);
                     return fastoml_fail(r, FASTOML_ERR_SYNTAX);
                 }
                 {
                     const unsigned char e = fastoml_reader_peek(r);
                     if (e == 'b') {
-                        if (!fastoml_tmpbuf_push_byte(r, &tmp, '\b')) {
-                            fastoml_tmpbuf_release(r, &tmp);
+                        if (sb_ptr && !fastoml_arena_strbuf_push_byte(sb_ptr, '\b')) {
                             return fastoml_fail(r, FASTOML_ERR_OOM);
                         }
                         fastoml_reader_advance_byte(r);
                         continue;
                     }
                     if (e == 't') {
-                        if (!fastoml_tmpbuf_push_byte(r, &tmp, '\t')) {
-                            fastoml_tmpbuf_release(r, &tmp);
+                        if (sb_ptr && !fastoml_arena_strbuf_push_byte(sb_ptr, '\t')) {
                             return fastoml_fail(r, FASTOML_ERR_OOM);
                         }
                         fastoml_reader_advance_byte(r);
                         continue;
                     }
                     if (e == 'n') {
-                        if (!fastoml_tmpbuf_push_byte(r, &tmp, '\n')) {
-                            fastoml_tmpbuf_release(r, &tmp);
+                        if (sb_ptr && !fastoml_arena_strbuf_push_byte(sb_ptr, '\n')) {
                             return fastoml_fail(r, FASTOML_ERR_OOM);
                         }
                         fastoml_reader_advance_byte(r);
                         continue;
                     }
                     if (e == 'f') {
-                        if (!fastoml_tmpbuf_push_byte(r, &tmp, '\f')) {
-                            fastoml_tmpbuf_release(r, &tmp);
+                        if (sb_ptr && !fastoml_arena_strbuf_push_byte(sb_ptr, '\f')) {
                             return fastoml_fail(r, FASTOML_ERR_OOM);
                         }
                         fastoml_reader_advance_byte(r);
                         continue;
                     }
                     if (e == 'r') {
-                        if (!fastoml_tmpbuf_push_byte(r, &tmp, '\r')) {
-                            fastoml_tmpbuf_release(r, &tmp);
+                        if (sb_ptr && !fastoml_arena_strbuf_push_byte(sb_ptr, '\r')) {
                             return fastoml_fail(r, FASTOML_ERR_OOM);
                         }
                         fastoml_reader_advance_byte(r);
                         continue;
                     }
                     if (e == 'e') {
-                        if (!fastoml_tmpbuf_push_byte(r, &tmp, 0x1B)) {
-                            fastoml_tmpbuf_release(r, &tmp);
+                        if (sb_ptr && !fastoml_arena_strbuf_push_byte(sb_ptr, 0x1B)) {
                             return fastoml_fail(r, FASTOML_ERR_OOM);
                         }
                         fastoml_reader_advance_byte(r);
                         continue;
                     }
                     if (e == '"') {
-                        if (!fastoml_tmpbuf_push_byte(r, &tmp, '"')) {
-                            fastoml_tmpbuf_release(r, &tmp);
+                        if (sb_ptr && !fastoml_arena_strbuf_push_byte(sb_ptr, '"')) {
                             return fastoml_fail(r, FASTOML_ERR_OOM);
                         }
                         fastoml_reader_advance_byte(r);
                         continue;
                     }
                     if (e == '\\') {
-                        if (!fastoml_tmpbuf_push_byte(r, &tmp, '\\')) {
-                            fastoml_tmpbuf_release(r, &tmp);
+                        if (sb_ptr && !fastoml_arena_strbuf_push_byte(sb_ptr, '\\')) {
                             return fastoml_fail(r, FASTOML_ERR_OOM);
                         }
                         fastoml_reader_advance_byte(r);
@@ -1713,15 +1831,12 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
                         fastoml_reader_advance_byte(r);
                         s = fastoml_parse_hex_escape(r, digits, &cp);
                         if (s != FASTOML_OK) {
-                            fastoml_tmpbuf_release(r, &tmp);
                             return s;
                         }
                         if (!fastoml_utf8_encode(cp, enc, &enc_len)) {
-                            fastoml_tmpbuf_release(r, &tmp);
                             return fastoml_fail(r, FASTOML_ERR_SYNTAX);
                         }
-                        if (!fastoml_tmpbuf_push_mem(r, &tmp, enc, enc_len)) {
-                            fastoml_tmpbuf_release(r, &tmp);
+                        if (sb_ptr && !fastoml_arena_strbuf_push_mem(sb_ptr, enc, enc_len)) {
                             return fastoml_fail(r, FASTOML_ERR_OOM);
                         }
                         continue;
@@ -1733,7 +1848,6 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
                         if (fastoml_reader_peek(r) == '\n' || fastoml_reader_peek(r) == '\r') {
                             s = fastoml_reader_advance_newline(r);
                             if (s != FASTOML_OK) {
-                                fastoml_tmpbuf_release(r, &tmp);
                                 return s;
                             }
                             while (!fastoml_reader_eof(r)) {
@@ -1745,7 +1859,6 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
                                 if (k == '\n' || k == '\r') {
                                     s = fastoml_reader_advance_newline(r);
                                     if (s != FASTOML_OK) {
-                                        fastoml_tmpbuf_release(r, &tmp);
                                         return s;
                                     }
                                     continue;
@@ -1755,7 +1868,6 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
                             continue;
                         }
                     }
-                    fastoml_tmpbuf_release(r, &tmp);
                     return fastoml_fail(r, FASTOML_ERR_SYNTAX);
                 }
             }
@@ -1769,7 +1881,6 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
                         break;
                     }
                     if ((k < 0x20 && k != '\t') || k == 0x7F) {
-                        fastoml_tmpbuf_release(r, &tmp);
                         fastoml_reader_advance_span_no_nl(r, p - start);
                         return fastoml_fail(r, FASTOML_ERR_SYNTAX);
                     }
@@ -1777,8 +1888,7 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
                 }
                 if (p > start) {
                     const size_t n = p - start;
-                    if (!fastoml_tmpbuf_push_mem(r, &tmp, r->src + start, n)) {
-                        fastoml_tmpbuf_release(r, &tmp);
+                    if (sb_ptr && !fastoml_arena_strbuf_push_mem(sb_ptr, r->src + start, n)) {
                         return fastoml_fail(r, FASTOML_ERR_OOM);
                     }
                     fastoml_reader_advance_span_no_nl(r, n);
@@ -1787,38 +1897,31 @@ static fastoml_status fastoml_parse_basic_string(fastoml_reader* r, int multilin
             }
 
             if (!multiline && (c == '\n' || c == '\r')) {
-                fastoml_tmpbuf_release(r, &tmp);
                 return fastoml_fail(r, FASTOML_ERR_SYNTAX);
             }
             if ((c < 0x20 && c != '\t' && c != '\n' && c != '\r') || c == 0x7F) {
-                fastoml_tmpbuf_release(r, &tmp);
                 return fastoml_fail(r, FASTOML_ERR_SYNTAX);
             }
             if (for_key && (c == '\n' || c == '\r')) {
-                fastoml_tmpbuf_release(r, &tmp);
                 return fastoml_fail(r, FASTOML_ERR_SYNTAX);
             }
 
             if (c == '\n' || c == '\r') {
-                if (!fastoml_tmpbuf_push_byte(r, &tmp, '\n')) {
-                    fastoml_tmpbuf_release(r, &tmp);
+                if (sb_ptr && !fastoml_arena_strbuf_push_byte(sb_ptr, '\n')) {
                     return fastoml_fail(r, FASTOML_ERR_OOM);
                 }
                 s = fastoml_reader_advance_newline(r);
                 if (s != FASTOML_OK) {
-                    fastoml_tmpbuf_release(r, &tmp);
                     return s;
                 }
             } else {
-                if (!fastoml_tmpbuf_push_byte(r, &tmp, (char)c)) {
-                    fastoml_tmpbuf_release(r, &tmp);
+                if (sb_ptr && !fastoml_arena_strbuf_push_byte(sb_ptr, (char)c)) {
                     return fastoml_fail(r, FASTOML_ERR_OOM);
                 }
                 fastoml_reader_advance_byte(r);
             }
         }
 
-        fastoml_tmpbuf_release(r, &tmp);
         return fastoml_fail(r, FASTOML_ERR_SYNTAX);
     }
 }
@@ -1871,6 +1974,42 @@ static fastoml_status fastoml_parse_literal_string(fastoml_reader* r, int multil
         if (p >= r->len) {
             fastoml_reader_advance_span_no_nl(r, p - r->pos);
             return fastoml_fail(r, FASTOML_ERR_SYNTAX);
+        }
+    } else {
+        const size_t start = r->pos;
+        size_t p = start;
+        while (p < r->len) {
+            const unsigned char c = (unsigned char)r->src[p];
+            if (c == '\r') {
+                break;
+            }
+            if (c == '\'') {
+                size_t run = 0;
+                while (p + run < r->len && r->src[p + run] == '\'') {
+                    run += 1;
+                }
+                if (run >= 3u) {
+                    const size_t lit = run - 3u;
+                    if (run > 5u) {
+                        fastoml_reader_advance_span_lf(r, r->src + r->pos, p - r->pos);
+                        return fastoml_fail(r, FASTOML_ERR_SYNTAX);
+                    }
+                    if (out) {
+                        out->ptr = r->src + start;
+                        out->len = (uint32_t)((p - start) + lit);
+                    }
+                    fastoml_reader_advance_span_lf(r, r->src + r->pos, p - r->pos);
+                    fastoml_reader_advance_span_no_nl(r, run);
+                    return FASTOML_OK;
+                }
+                p += run;
+                continue;
+            }
+            if ((c < 0x20 && c != '\t' && c != '\n') || c == 0x7F) {
+                fastoml_reader_advance_span_lf(r, r->src + r->pos, p - r->pos);
+                return fastoml_fail(r, FASTOML_ERR_SYNTAX);
+            }
+            ++p;
         }
     }
 
@@ -2293,43 +2432,6 @@ static int fastoml_try_parse_datetime(fastoml_slice tok, fastoml_node_kind* kind
     return 0;
 }
 
-enum {
-    FASTOML_TOKEN_CHAR_COLON = 1u << 0,
-    FASTOML_TOKEN_CHAR_T = 1u << 1,
-    FASTOML_TOKEN_CHAR_DOT = 1u << 2,
-    FASTOML_TOKEN_CHAR_EXP = 1u << 3
-};
-
-static uint32_t fastoml_token_char_flags(fastoml_slice tok) {
-    uint32_t flags = 0;
-    uint32_t i = 0;
-    while (i < tok.len) {
-        switch (tok.ptr[i]) {
-        case ':':
-            flags |= FASTOML_TOKEN_CHAR_COLON;
-            break;
-        case 'T':
-        case 't':
-            flags |= FASTOML_TOKEN_CHAR_T;
-            break;
-        case '.':
-            flags |= FASTOML_TOKEN_CHAR_DOT;
-            break;
-        case 'e':
-        case 'E':
-            flags |= FASTOML_TOKEN_CHAR_EXP;
-            break;
-        default:
-            break;
-        }
-        if (flags == (FASTOML_TOKEN_CHAR_COLON | FASTOML_TOKEN_CHAR_T | FASTOML_TOKEN_CHAR_DOT | FASTOML_TOKEN_CHAR_EXP)) {
-            break;
-        }
-        ++i;
-    }
-    return flags;
-}
-
 static int fastoml_token_equals(fastoml_slice tok, const char* lit) {
     const size_t n = fastoml_cstr_len(lit);
     if (tok.len != (uint32_t)n)
@@ -2463,12 +2565,12 @@ static fastoml_status fastoml_parse_int_token(fastoml_reader* r, fastoml_slice t
     return FASTOML_OK;
 }
 
-FASTOML_INLINE double fastoml_scale_pow10(double v, int exp10) {
-    static const double pow10_pos[] = {
-        1e1, 1e2, 1e4, 1e8, 1e16, 1e32, 1e64, 1e128, 1e256};
-    static const double pow10_neg[] = {
-        1e-1, 1e-2, 1e-4, 1e-8, 1e-16, 1e-32, 1e-64, 1e-128, 1e-256};
-    uint32_t bit = 0;
+FASTOML_INLINE long double fastoml_scale_pow10_ld(long double v, int exp10) {
+    static const long double pow10_pos[] = {
+        1e1L, 1e2L, 1e4L, 1e8L, 1e16L, 1e32L, 1e64L, 1e128L, 1e256L};
+    static const long double pow10_neg[] = {
+        1e-1L, 1e-2L, 1e-4L, 1e-8L, 1e-16L, 1e-32L, 1e-64L, 1e-128L, 1e-256L};
+    uint32_t bit = 0u;
     uint32_t e = (uint32_t)(exp10 < 0 ? -exp10 : exp10);
     if (exp10 >= 0) {
         while (e != 0u) {
@@ -2476,7 +2578,7 @@ FASTOML_INLINE double fastoml_scale_pow10(double v, int exp10) {
                 v *= pow10_pos[bit];
             }
             e >>= 1u;
-            ++bit;
+            bit += 1u;
         }
     } else {
         while (e != 0u) {
@@ -2484,127 +2586,40 @@ FASTOML_INLINE double fastoml_scale_pow10(double v, int exp10) {
                 v *= pow10_neg[bit];
             }
             e >>= 1u;
-            ++bit;
+            bit += 1u;
         }
     }
     return v;
 }
 
-static fastoml_status fastoml_parse_float_decimal(const char* s, double* out) {
-    const char* p = s;
-    int sign = 1;
-    int exp10 = 0;
-    int explicit_exp = 0;
-    int explicit_exp_sign = 1;
-    uint64_t mantissa = 0;
-    int mantissa_digits = 0;
-    int frac_digits = 0;
-    int dropped_digits = 0;
-    int sig_started = 0;
-    int round_digit = -1;
-    int round_sticky = 0;
-    int c;
-
-    if (*p == '+' || *p == '-') {
-        sign = (*p == '-') ? -1 : 1;
-        ++p;
-    }
-
-    while ((c = (unsigned char)*p) != 0 && fastoml_char_is_digit((unsigned char)c)) {
-        const uint32_t d = (uint32_t)(c - '0');
-        if (!sig_started) {
-            if (d == 0u) {
-                ++p;
-                continue;
-            }
-            sig_started = 1;
-        }
-        if (mantissa_digits < 19) {
-            mantissa = mantissa * 10u + (uint64_t)d;
-            mantissa_digits += 1;
-        } else {
-            if (round_digit < 0) {
-                round_digit = (int)d;
-            } else if (d != 0u) {
-                round_sticky = 1;
-            }
-            dropped_digits += 1;
-        }
-        ++p;
-    }
-
-    if (*p == '.') {
-        ++p;
-        while ((c = (unsigned char)*p) != 0 && fastoml_char_is_digit((unsigned char)c)) {
-            const uint32_t d = (uint32_t)(c - '0');
-            if (!sig_started) {
-                if (d == 0u) {
-                    frac_digits += 1;
-                    ++p;
-                    continue;
-                }
-                sig_started = 1;
-            }
-            if (mantissa_digits < 19) {
-                mantissa = mantissa * 10u + (uint64_t)d;
-                mantissa_digits += 1;
-            } else {
-                if (round_digit < 0) {
-                    round_digit = (int)d;
-                } else if (d != 0u) {
-                    round_sticky = 1;
-                }
-                dropped_digits += 1;
-            }
-            frac_digits += 1;
-            ++p;
-        }
-    }
-
-    if (*p == 'e' || *p == 'E') {
-        ++p;
-        if (*p == '+' || *p == '-') {
-            explicit_exp_sign = (*p == '-') ? -1 : 1;
-            ++p;
-        }
-        if (!fastoml_char_is_digit((unsigned char)*p)) {
-            return FASTOML_ERR_SYNTAX;
-        }
-        while ((c = (unsigned char)*p) != 0 && fastoml_char_is_digit((unsigned char)c)) {
-            const int d = c - '0';
-            if (explicit_exp < 100000) {
-                explicit_exp = explicit_exp * 10 + d;
-            }
-            ++p;
-        }
-    }
-
-    if (*p != '\0') {
-        return FASTOML_ERR_SYNTAX;
-    }
-
-    exp10 = explicit_exp_sign * explicit_exp - frac_digits + dropped_digits;
-
-    if (!sig_started) {
-        *out = sign < 0 ? -0.0 : 0.0;
-        return FASTOML_OK;
-    }
-
-    if (round_digit > 5 || (round_digit == 5 && (round_sticky || (mantissa & 1u) != 0u))) {
-        mantissa += 1u;
-        if (mantissa == 10000000000000000000ull) {
-            mantissa = 1000000000000000000ull;
-            exp10 += 1;
-        }
-    }
-
+static fastoml_status fastoml_parse_float_decimal(int sign, uint64_t mantissa, int exp10, double* out) {
     if (exp10 > 308 || exp10 < -400) {
         return FASTOML_ERR_OVERFLOW;
     }
 
-    {
+    if (exp10 >= -22 && exp10 <= 22 && mantissa <= 9007199254740991ull) {
+        static const double pow10_small_pos[] = {
+            1.0, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, 10000000.0,
+            100000000.0, 1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0,
+            10000000000000.0, 100000000000000.0, 1000000000000000.0, 10000000000000000.0,
+            100000000000000000.0, 1000000000000000000.0, 10000000000000000000.0,
+            100000000000000000000.0, 1000000000000000000000.0, 10000000000000000000000.0};
         double v = (double)mantissa;
-        v = fastoml_scale_pow10(v, exp10);
+        if (exp10 >= 0) {
+            v *= pow10_small_pos[(size_t)exp10];
+        } else {
+            v /= pow10_small_pos[(size_t)(-exp10)];
+        }
+        if (!isfinite(v) || v == 0.0) {
+            return FASTOML_ERR_OVERFLOW;
+        }
+        *out = sign < 0 ? -v : v;
+        return FASTOML_OK;
+    }
+
+    {
+        const long double lv = fastoml_scale_pow10_ld((long double)mantissa, exp10);
+        const double v = (double)lv;
         if (!isfinite(v) || v == 0.0) {
             return FASTOML_ERR_OVERFLOW;
         }
@@ -2613,20 +2628,31 @@ static fastoml_status fastoml_parse_float_decimal(const char* s, double* out) {
     return FASTOML_OK;
 }
 
+static int fastoml_token_is_float_keyword(fastoml_slice tok) {
+    return fastoml_token_equals(tok, "inf") || fastoml_token_equals(tok, "+inf") || fastoml_token_equals(tok, "-inf") ||
+           fastoml_token_equals(tok, "nan") || fastoml_token_equals(tok, "+nan") || fastoml_token_equals(tok, "-nan");
+}
+
 static fastoml_status fastoml_parse_float_token(fastoml_reader* r, fastoml_slice tok, double* out) {
-    char local[256];
-    char* tmp = local;
-    size_t cap = sizeof(local);
-    size_t w = 0;
-    uint32_t i = 0;
+    size_t i = 0u;
+    int sign = 1;
     int seen_dot = 0;
     int seen_exp = 0;
-    size_t sign_off = 0;
-    size_t int_digits = 0;
-    size_t frac_digits = 0;
-    size_t exp_digits = 0;
+    int in_frac = 0;
     int in_exp = 0;
+    int exp_sign = 1;
+    int exp_value = 0;
+    size_t int_digits = 0u;
+    size_t frac_digits = 0u;
+    size_t exp_digits = 0u;
+    char first_int_digit = '\0';
     int prev_is_digit = 0;
+    int sig_started = 0;
+    uint64_t mantissa = 0u;
+    int mantissa_digits = 0;
+    int dropped_digits = 0;
+    int round_digit = -1;
+    int round_sticky = 0;
 
     if (fastoml_token_equals(tok, "inf") || fastoml_token_equals(tok, "+inf")) {
         *out = INFINITY;
@@ -2645,104 +2671,137 @@ static fastoml_status fastoml_parse_float_token(fastoml_reader* r, fastoml_slice
         return FASTOML_OK;
     }
 
-    if (tok.len + 1 > cap) {
-        tmp = (char*)r->parser->opt.alloc.malloc_fn(r->parser->opt.alloc.ctx, tok.len + 1);
-        if (!tmp) {
-            return fastoml_fail(r, FASTOML_ERR_OOM);
+    if (tok.len == 0u) {
+        return fastoml_fail(r, FASTOML_ERR_SYNTAX);
+    }
+    if (tok.ptr[i] == '+' || tok.ptr[i] == '-') {
+        sign = tok.ptr[i] == '-' ? -1 : 1;
+        i += 1u;
+        if (i >= tok.len) {
+            return fastoml_fail(r, FASTOML_ERR_SYNTAX);
         }
-        cap = tok.len + 1;
     }
 
     while (i < tok.len) {
-        const char c = tok.ptr[i];
+        const unsigned char c = (unsigned char)tok.ptr[i];
         if (c == '_') {
-            if (!prev_is_digit || i + 1 >= tok.len || !fastoml_char_is_digit((unsigned char)tok.ptr[i + 1])) {
-                if (tmp != local)
-                    r->parser->opt.alloc.free_fn(r->parser->opt.alloc.ctx, tmp);
+            if (!prev_is_digit || i + 1u >= tok.len || !fastoml_char_is_digit((unsigned char)tok.ptr[i + 1u])) {
                 return fastoml_fail(r, FASTOML_ERR_SYNTAX);
             }
             prev_is_digit = 0;
-            ++i;
+            i += 1u;
             continue;
         }
-        tmp[w++] = c;
-        prev_is_digit = fastoml_char_is_digit((unsigned char)c);
-        ++i;
-    }
-    tmp[w] = '\0';
 
-    i = 0;
-    if (tmp[i] == '+' || tmp[i] == '-') {
-        sign_off = 1;
-        ++i;
-    }
-    while (fastoml_char_is_digit((unsigned char)tmp[i])) {
-        ++int_digits;
-        ++i;
-    }
-    if (tmp[i] == '.') {
-        seen_dot = 1;
-        ++i;
-        while (fastoml_char_is_digit((unsigned char)tmp[i])) {
-            ++frac_digits;
-            ++i;
+        if (!in_exp && c == '.') {
+            if (seen_dot) {
+                return fastoml_fail(r, FASTOML_ERR_SYNTAX);
+            }
+            seen_dot = 1;
+            in_frac = 1;
+            prev_is_digit = 0;
+            i += 1u;
+            continue;
         }
-    }
-    if (tmp[i] == 'e' || tmp[i] == 'E') {
-        seen_exp = 1;
-        in_exp = 1;
-        ++i;
-        if (tmp[i] == '+' || tmp[i] == '-')
-            ++i;
-        while (fastoml_char_is_digit((unsigned char)tmp[i])) {
-            ++exp_digits;
-            ++i;
-        }
-    }
 
-    if (tmp[i] != '\0') {
-        if (tmp != local)
-            r->parser->opt.alloc.free_fn(r->parser->opt.alloc.ctx, tmp);
-        return fastoml_fail(r, FASTOML_ERR_SYNTAX);
-    }
-    if (!seen_dot && !seen_exp) {
-        if (tmp != local)
-            r->parser->opt.alloc.free_fn(r->parser->opt.alloc.ctx, tmp);
-        return fastoml_fail(r, FASTOML_ERR_SYNTAX);
-    }
-    if (seen_dot) {
-        if (int_digits == 0 || frac_digits == 0) {
-            if (tmp != local)
-                r->parser->opt.alloc.free_fn(r->parser->opt.alloc.ctx, tmp);
+        if (c == 'e' || c == 'E') {
+            if (seen_exp) {
+                return fastoml_fail(r, FASTOML_ERR_SYNTAX);
+            }
+            seen_exp = 1;
+            in_exp = 1;
+            prev_is_digit = 0;
+            i += 1u;
+            if (i < tok.len && (tok.ptr[i] == '+' || tok.ptr[i] == '-')) {
+                exp_sign = tok.ptr[i] == '-' ? -1 : 1;
+                i += 1u;
+            }
+            continue;
+        }
+
+        if (!fastoml_char_is_digit(c)) {
             return fastoml_fail(r, FASTOML_ERR_SYNTAX);
         }
-    } else if (int_digits == 0) {
-        if (tmp != local)
-            r->parser->opt.alloc.free_fn(r->parser->opt.alloc.ctx, tmp);
+        prev_is_digit = 1;
+
+        if (in_exp) {
+            if (exp_value < 100000) {
+                exp_value = exp_value * 10 + (int)(c - '0');
+            }
+            exp_digits += 1u;
+            i += 1u;
+            continue;
+        }
+
+        if (!in_frac) {
+            if (int_digits == 0u) {
+                first_int_digit = (char)c;
+            }
+            int_digits += 1u;
+        } else {
+            frac_digits += 1u;
+        }
+
+        {
+            const uint32_t d = (uint32_t)(c - '0');
+            if (!sig_started) {
+                if (d == 0u) {
+                    i += 1u;
+                    continue;
+                }
+                sig_started = 1;
+            }
+            if (mantissa_digits < 19) {
+                mantissa = mantissa * 10u + (uint64_t)d;
+                mantissa_digits += 1;
+            } else {
+                if (round_digit < 0) {
+                    round_digit = (int)d;
+                } else if (d != 0u) {
+                    round_sticky = 1;
+                }
+                dropped_digits += 1;
+            }
+        }
+        i += 1u;
+    }
+
+    if (!seen_dot && !seen_exp) {
         return fastoml_fail(r, FASTOML_ERR_SYNTAX);
     }
-    if (in_exp && exp_digits == 0) {
-        if (tmp != local)
-            r->parser->opt.alloc.free_fn(r->parser->opt.alloc.ctx, tmp);
+    if (seen_dot && (int_digits == 0u || frac_digits == 0u)) {
         return fastoml_fail(r, FASTOML_ERR_SYNTAX);
     }
-    if (int_digits > 1 && tmp[sign_off] == '0') {
-        if (tmp != local)
-            r->parser->opt.alloc.free_fn(r->parser->opt.alloc.ctx, tmp);
+    if (!seen_dot && int_digits == 0u) {
         return fastoml_fail(r, FASTOML_ERR_SYNTAX);
+    }
+    if (seen_exp && exp_digits == 0u) {
+        return fastoml_fail(r, FASTOML_ERR_SYNTAX);
+    }
+    if (int_digits > 1u && first_int_digit == '0') {
+        return fastoml_fail(r, FASTOML_ERR_SYNTAX);
+    }
+
+    if (!sig_started) {
+        *out = sign < 0 ? -0.0 : 0.0;
+        return FASTOML_OK;
+    }
+
+    if (round_digit > 5 || (round_digit == 5 && (round_sticky || (mantissa & 1u) != 0u))) {
+        mantissa += 1u;
+        if (mantissa == 10000000000000000000ull) {
+            mantissa = 1000000000000000000ull;
+            dropped_digits += 1;
+        }
     }
 
     {
-        fastoml_status ps = fastoml_parse_float_decimal(tmp, out);
+        const int exp10 = exp_sign * exp_value - (int)frac_digits + dropped_digits;
+        const fastoml_status ps = fastoml_parse_float_decimal(sign, mantissa, exp10, out);
         if (ps != FASTOML_OK) {
-            if (tmp != local)
-                r->parser->opt.alloc.free_fn(r->parser->opt.alloc.ctx, tmp);
             return fastoml_fail(r, ps == FASTOML_ERR_SYNTAX ? FASTOML_ERR_SYNTAX : FASTOML_ERR_OVERFLOW);
         }
     }
-
-    if (tmp != local)
-        r->parser->opt.alloc.free_fn(r->parser->opt.alloc.ctx, tmp);
     return FASTOML_OK;
 }
 
@@ -2882,13 +2941,20 @@ typedef struct fastoml_validate_inline_ctx {
 
 static int fastoml_validate_inline_table_reserve(fastoml_reader* r, fastoml_validate_inline_table* t, uint32_t new_cap) {
     fastoml_validate_inline_entry* items;
-    items = (fastoml_validate_inline_entry*)fastoml_arena_alloc(
-        &r->parser->arena, sizeof(fastoml_validate_inline_entry) * (size_t)new_cap, sizeof(void*));
+    fastoml_validate_inline_entry* old_items = t->items;
+    const size_t old_bytes = sizeof(fastoml_validate_inline_entry) * (size_t)t->cap;
+    const size_t new_bytes = sizeof(fastoml_validate_inline_entry) * (size_t)new_cap;
+    items = (fastoml_validate_inline_entry*)fastoml_arena_grow_last_or_alloc(
+        &r->parser->arena,
+        old_items,
+        old_bytes,
+        new_bytes,
+        sizeof(void*));
     if (!items) {
         return 0;
     }
-    if (t->len > 0u && t->items) {
-        memcpy(items, t->items, sizeof(fastoml_validate_inline_entry) * (size_t)t->len);
+    if (items != old_items && t->len > 0u && old_items) {
+        memcpy(items, old_items, sizeof(fastoml_validate_inline_entry) * (size_t)t->len);
     }
     t->items = items;
     t->cap = new_cap;
@@ -2897,13 +2963,20 @@ static int fastoml_validate_inline_table_reserve(fastoml_reader* r, fastoml_vali
 
 static int fastoml_validate_inline_ctx_reserve_tables(fastoml_reader* r, fastoml_validate_inline_ctx* ctx, uint32_t new_cap) {
     fastoml_validate_inline_table* tables;
-    tables = (fastoml_validate_inline_table*)fastoml_arena_alloc(
-        &r->parser->arena, sizeof(fastoml_validate_inline_table) * (size_t)new_cap, sizeof(void*));
+    fastoml_validate_inline_table* old_tables = ctx->tables;
+    const size_t old_bytes = sizeof(fastoml_validate_inline_table) * (size_t)ctx->cap;
+    const size_t new_bytes = sizeof(fastoml_validate_inline_table) * (size_t)new_cap;
+    tables = (fastoml_validate_inline_table*)fastoml_arena_grow_last_or_alloc(
+        &r->parser->arena,
+        old_tables,
+        old_bytes,
+        new_bytes,
+        sizeof(void*));
     if (!tables) {
         return 0;
     }
-    if (ctx->len > 0u && ctx->tables) {
-        memcpy(tables, ctx->tables, sizeof(fastoml_validate_inline_table) * (size_t)ctx->len);
+    if (tables != old_tables && ctx->len > 0u && old_tables) {
+        memcpy(tables, old_tables, sizeof(fastoml_validate_inline_table) * (size_t)ctx->len);
     }
     ctx->tables = tables;
     ctx->cap = new_cap;
@@ -3147,6 +3220,10 @@ static fastoml_status fastoml_parse_token_value(fastoml_reader* r, fastoml_slice
     fastoml_node* n;
     int tok_is_true;
     int tok_is_false;
+    int looks_like_datetime;
+    int has_float_marker;
+    int is_float_keyword;
+    uint32_t i;
     if (FASTOML_UNLIKELY(tok.len == 0)) {
         return fastoml_fail(r, FASTOML_ERR_SYNTAX);
     }
@@ -3165,10 +3242,26 @@ static fastoml_status fastoml_parse_token_value(fastoml_reader* r, fastoml_slice
         return FASTOML_OK;
     }
 
+    looks_like_datetime = (tok.len >= 10u && tok.ptr[4] == '-' && tok.ptr[7] == '-') ||
+                          (tok.len >= 5u && tok.ptr[2] == ':');
+    has_float_marker = 0;
+    i = 0u;
+    while (i < tok.len) {
+        const char c = tok.ptr[i];
+        if (!looks_like_datetime && (c == ':' || c == 'T' || c == 't')) {
+            looks_like_datetime = 1;
+        }
+        if (!has_float_marker && (c == '.' || c == 'e' || c == 'E')) {
+            has_float_marker = 1;
+        }
+        if (looks_like_datetime && has_float_marker) {
+            break;
+        }
+        i += 1u;
+    }
+
     {
-        const uint32_t token_chars = fastoml_token_char_flags(tok);
-        const int looks_like_date = tok.len >= 10 && tok.ptr[4] == '-' && tok.ptr[7] == '-';
-        if ((token_chars & (FASTOML_TOKEN_CHAR_COLON | FASTOML_TOKEN_CHAR_T)) != 0u || looks_like_date) {
+        if (looks_like_datetime) {
             fastoml_node_kind dk = FASTOML_NODE_DATETIME;
             if (fastoml_try_parse_datetime(tok, &dk)) {
                 if (r->validate_only) {
@@ -3184,27 +3277,22 @@ static fastoml_status fastoml_parse_token_value(fastoml_reader* r, fastoml_slice
             }
         }
 
-        {
-            const int is_float_keyword =
-                fastoml_token_equals(tok, "inf") || fastoml_token_equals(tok, "+inf") || fastoml_token_equals(tok, "-inf") ||
-                fastoml_token_equals(tok, "nan") || fastoml_token_equals(tok, "+nan") || fastoml_token_equals(tok, "-nan");
-            if (((token_chars & (FASTOML_TOKEN_CHAR_DOT | FASTOML_TOKEN_CHAR_EXP)) != 0u || is_float_keyword) &&
-                !fastoml_token_is_nondecimal_int(tok)) {
-                double v = 0.0;
-                if (fastoml_parse_float_token(r, tok, &v) == FASTOML_OK) {
-                    if (r->validate_only) {
-                        *out_node = fastoml_validate_marker_node(FASTOML_NODE_FLOAT);
-                        return FASTOML_OK;
-                    }
-                    n = fastoml_new_node(r, FASTOML_NODE_FLOAT);
-                    if (FASTOML_UNLIKELY(!n))
-                        return fastoml_fail(r, FASTOML_ERR_OOM);
-                    n->as.f64 = v;
-                    *out_node = n;
+        is_float_keyword = fastoml_token_is_float_keyword(tok);
+        if ((has_float_marker || is_float_keyword) && !fastoml_token_is_nondecimal_int(tok)) {
+            double v = 0.0;
+            if (fastoml_parse_float_token(r, tok, &v) == FASTOML_OK) {
+                if (r->validate_only) {
+                    *out_node = fastoml_validate_marker_node(FASTOML_NODE_FLOAT);
                     return FASTOML_OK;
                 }
-                return r->err.code;
+                n = fastoml_new_node(r, FASTOML_NODE_FLOAT);
+                if (FASTOML_UNLIKELY(!n))
+                    return fastoml_fail(r, FASTOML_ERR_OOM);
+                n->as.f64 = v;
+                *out_node = n;
+                return FASTOML_OK;
             }
+            return r->err.code;
         }
     }
 
@@ -3881,15 +3969,26 @@ static fastoml_status fastoml_builder_copy_slice(fastoml_builder* b, fastoml_sli
 
 static int fastoml_builder_table_reserve(fastoml_builder* b, fastoml_value* table, uint32_t new_cap) {
     fastoml_builder_kv* items;
+    fastoml_builder_kv* old_items;
+    size_t old_bytes;
+    size_t new_bytes;
     if (!b || !table || table->kind != FASTOML_NODE_TABLE) {
         return 0;
     }
-    items = (fastoml_builder_kv*)fastoml_arena_alloc(&b->arena, sizeof(fastoml_builder_kv) * new_cap, sizeof(void*));
+    old_bytes = sizeof(fastoml_builder_kv) * (size_t)table->as.table.cap;
+    new_bytes = sizeof(fastoml_builder_kv) * (size_t)new_cap;
+    old_items = table->as.table.items;
+    items = (fastoml_builder_kv*)fastoml_arena_grow_last_or_alloc(
+        &b->arena,
+        old_items,
+        old_bytes,
+        new_bytes,
+        sizeof(void*));
     if (!items) {
         return 0;
     }
-    if (table->as.table.items && table->as.table.len > 0u) {
-        memcpy(items, table->as.table.items, sizeof(fastoml_builder_kv) * table->as.table.len);
+    if (items != old_items && old_items && table->as.table.len > 0u) {
+        memcpy(items, old_items, sizeof(fastoml_builder_kv) * (size_t)table->as.table.len);
     }
     table->as.table.items = items;
     table->as.table.cap = new_cap;
@@ -3898,15 +3997,26 @@ static int fastoml_builder_table_reserve(fastoml_builder* b, fastoml_value* tabl
 
 static int fastoml_builder_array_reserve(fastoml_builder* b, fastoml_value* array, uint32_t new_cap) {
     fastoml_value** items;
+    fastoml_value** old_items;
+    size_t old_bytes;
+    size_t new_bytes;
     if (!b || !array || array->kind != FASTOML_NODE_ARRAY) {
         return 0;
     }
-    items = (fastoml_value**)fastoml_arena_alloc(&b->arena, sizeof(fastoml_value*) * new_cap, sizeof(void*));
+    old_bytes = sizeof(fastoml_value*) * (size_t)array->as.array.cap;
+    new_bytes = sizeof(fastoml_value*) * (size_t)new_cap;
+    old_items = array->as.array.items;
+    items = (fastoml_value**)fastoml_arena_grow_last_or_alloc(
+        &b->arena,
+        old_items,
+        old_bytes,
+        new_bytes,
+        sizeof(void*));
     if (!items) {
         return 0;
     }
-    if (array->as.array.items && array->as.array.len > 0u) {
-        memcpy(items, array->as.array.items, sizeof(fastoml_value*) * array->as.array.len);
+    if (items != old_items && old_items && array->as.array.len > 0u) {
+        memcpy(items, old_items, sizeof(fastoml_value*) * (size_t)array->as.array.len);
     }
     array->as.array.items = items;
     array->as.array.cap = new_cap;
@@ -4150,14 +4260,14 @@ fastoml_status fastoml_builder_table_set(fastoml_value* table, fastoml_slice key
     if (fastoml_builder_table_find_kv(table, key, hash)) {
         return FASTOML_ERR_DUP_KEY;
     }
-    if (fastoml_builder_copy_slice(owner, key, &key_copy) != FASTOML_OK) {
-        return FASTOML_ERR_OOM;
-    }
     if (table->as.table.len == table->as.table.cap) {
         const uint32_t next_cap = table->as.table.cap == 0u ? 8u : table->as.table.cap * 2u;
         if (!fastoml_builder_table_reserve(owner, table, next_cap)) {
             return FASTOML_ERR_OOM;
         }
+    }
+    if (fastoml_builder_copy_slice(owner, key, &key_copy) != FASTOML_OK) {
+        return FASTOML_ERR_OOM;
     }
     table->as.table.items[table->as.table.len].key = key_copy;
     table->as.table.items[table->as.table.len].value = value;
