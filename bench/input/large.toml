@@ -1,0 +1,6009 @@
+title = "large benchmark fixture"
+generated = true
+schema_version = 1
+
+[global]
+region = "us-east-1"
+retries = 4
+backoff_ms = 120
+
+[[records]]
+id = "record-1"
+active = true
+priority = 1
+count = 17
+ratio = 0.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-1"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 2
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-2"
+active = true
+priority = 2
+count = 34
+ratio = 0.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-2"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 3
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-3"
+active = false
+priority = 3
+count = 51
+ratio = 0.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-3"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 4
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-4"
+active = true
+priority = 4
+count = 68
+ratio = 0.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-4"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 5
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-5"
+active = true
+priority = 5
+count = 85
+ratio = 0.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-5"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 1
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-6"
+active = false
+priority = 6
+count = 102
+ratio = 0.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-6"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 2
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-7"
+active = true
+priority = 7
+count = 119
+ratio = 0.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-7"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 3
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-8"
+active = true
+priority = 8
+count = 136
+ratio = 0.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-8"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 4
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-9"
+active = false
+priority = 9
+count = 153
+ratio = 0.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-9"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 5
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-10"
+active = true
+priority = 0
+count = 170
+ratio = 0.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-10"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 1
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-11"
+active = true
+priority = 1
+count = 187
+ratio = 0.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-0"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 2
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-12"
+active = false
+priority = 2
+count = 204
+ratio = 0.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-1"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 3
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-13"
+active = true
+priority = 3
+count = 221
+ratio = 1
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-2"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 4
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-14"
+active = true
+priority = 4
+count = 238
+ratio = 1.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-3"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 5
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-15"
+active = false
+priority = 5
+count = 255
+ratio = 1.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-4"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 1
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-16"
+active = true
+priority = 6
+count = 272
+ratio = 1.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-5"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 2
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-17"
+active = true
+priority = 7
+count = 289
+ratio = 1.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-6"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 3
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-18"
+active = false
+priority = 8
+count = 306
+ratio = 1.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-7"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 4
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-19"
+active = true
+priority = 9
+count = 323
+ratio = 1.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-8"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 5
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-20"
+active = true
+priority = 0
+count = 340
+ratio = 1.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-9"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 1
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-21"
+active = false
+priority = 1
+count = 357
+ratio = 1.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-10"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 2
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-22"
+active = true
+priority = 2
+count = 374
+ratio = 1.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-0"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 3
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-23"
+active = true
+priority = 3
+count = 391
+ratio = 1.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-1"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 4
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-24"
+active = false
+priority = 4
+count = 408
+ratio = 1.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-2"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 5
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-25"
+active = true
+priority = 5
+count = 425
+ratio = 1.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-3"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 1
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-26"
+active = true
+priority = 6
+count = 442
+ratio = 2
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-4"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 2
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-27"
+active = false
+priority = 7
+count = 459
+ratio = 2.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-5"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 3
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-28"
+active = true
+priority = 8
+count = 476
+ratio = 2.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-6"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 4
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-29"
+active = true
+priority = 9
+count = 493
+ratio = 2.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-7"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 5
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-30"
+active = false
+priority = 0
+count = 510
+ratio = 2.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-8"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 1
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-31"
+active = true
+priority = 1
+count = 527
+ratio = 2.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-9"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 2
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-32"
+active = true
+priority = 2
+count = 544
+ratio = 2.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-10"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 3
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-33"
+active = false
+priority = 3
+count = 561
+ratio = 2.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-0"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 4
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-34"
+active = true
+priority = 4
+count = 578
+ratio = 2.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-1"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 5
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-35"
+active = true
+priority = 5
+count = 595
+ratio = 2.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-2"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 1
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-36"
+active = false
+priority = 6
+count = 612
+ratio = 2.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-3"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 2
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-37"
+active = true
+priority = 7
+count = 629
+ratio = 2.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-4"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 3
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-38"
+active = true
+priority = 8
+count = 646
+ratio = 2.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-5"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 4
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-39"
+active = false
+priority = 9
+count = 663
+ratio = 3
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-6"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 5
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-40"
+active = true
+priority = 0
+count = 680
+ratio = 3.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-7"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 1
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-41"
+active = true
+priority = 1
+count = 697
+ratio = 3.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-8"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 2
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-42"
+active = false
+priority = 2
+count = 714
+ratio = 3.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-9"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 3
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-43"
+active = true
+priority = 3
+count = 731
+ratio = 3.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-10"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 4
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-44"
+active = true
+priority = 4
+count = 748
+ratio = 3.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-0"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 5
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-45"
+active = false
+priority = 5
+count = 765
+ratio = 3.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-1"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 1
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-46"
+active = true
+priority = 6
+count = 782
+ratio = 3.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-2"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 2
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-47"
+active = true
+priority = 7
+count = 799
+ratio = 3.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-3"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 3
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-48"
+active = false
+priority = 8
+count = 816
+ratio = 3.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-4"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 4
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-49"
+active = true
+priority = 9
+count = 833
+ratio = 3.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-5"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 5
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-50"
+active = true
+priority = 0
+count = 850
+ratio = 3.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-6"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 1
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-51"
+active = false
+priority = 1
+count = 867
+ratio = 3.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-7"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 2
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-52"
+active = true
+priority = 2
+count = 884
+ratio = 4
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-8"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 3
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-53"
+active = true
+priority = 3
+count = 901
+ratio = 4.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-9"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 4
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-54"
+active = false
+priority = 4
+count = 918
+ratio = 4.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-10"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 5
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-55"
+active = true
+priority = 5
+count = 935
+ratio = 4.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-0"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 1
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-56"
+active = true
+priority = 6
+count = 952
+ratio = 4.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-1"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 2
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-57"
+active = false
+priority = 7
+count = 969
+ratio = 4.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-2"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 3
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-58"
+active = true
+priority = 8
+count = 986
+ratio = 4.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-3"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 4
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-59"
+active = true
+priority = 9
+count = 1003
+ratio = 4.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-4"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 5
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-60"
+active = false
+priority = 0
+count = 1020
+ratio = 4.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-5"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 1
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-61"
+active = true
+priority = 1
+count = 1037
+ratio = 4.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-6"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 2
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-62"
+active = true
+priority = 2
+count = 1054
+ratio = 4.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-7"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 3
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-63"
+active = false
+priority = 3
+count = 1071
+ratio = 4.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-8"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 4
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-64"
+active = true
+priority = 4
+count = 1088
+ratio = 4.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-9"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 5
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-65"
+active = true
+priority = 5
+count = 1105
+ratio = 5
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-10"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 1
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-66"
+active = false
+priority = 6
+count = 1122
+ratio = 5.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-0"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 2
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-67"
+active = true
+priority = 7
+count = 1139
+ratio = 5.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-1"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 3
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-68"
+active = true
+priority = 8
+count = 1156
+ratio = 5.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-2"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 4
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-69"
+active = false
+priority = 9
+count = 1173
+ratio = 5.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-3"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 5
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-70"
+active = true
+priority = 0
+count = 1190
+ratio = 5.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-4"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 1
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-71"
+active = true
+priority = 1
+count = 1207
+ratio = 5.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-5"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 2
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-72"
+active = false
+priority = 2
+count = 1224
+ratio = 5.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-6"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 3
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-73"
+active = true
+priority = 3
+count = 1241
+ratio = 5.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-7"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 4
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-74"
+active = true
+priority = 4
+count = 1258
+ratio = 5.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-8"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 5
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-75"
+active = false
+priority = 5
+count = 1275
+ratio = 5.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-9"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 1
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-76"
+active = true
+priority = 6
+count = 1292
+ratio = 5.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-10"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 2
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-77"
+active = true
+priority = 7
+count = 1309
+ratio = 5.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-0"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 3
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-78"
+active = false
+priority = 8
+count = 1326
+ratio = 6
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-1"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 4
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-79"
+active = true
+priority = 9
+count = 1343
+ratio = 6.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-2"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 5
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-80"
+active = true
+priority = 0
+count = 1360
+ratio = 6.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-3"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 1
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-81"
+active = false
+priority = 1
+count = 1377
+ratio = 6.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-4"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 2
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-82"
+active = true
+priority = 2
+count = 1394
+ratio = 6.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-5"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 3
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-83"
+active = true
+priority = 3
+count = 1411
+ratio = 6.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-6"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 4
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-84"
+active = false
+priority = 4
+count = 1428
+ratio = 6.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-7"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 5
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-85"
+active = true
+priority = 5
+count = 1445
+ratio = 6.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-8"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 1
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-86"
+active = true
+priority = 6
+count = 1462
+ratio = 6.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-9"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 2
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-87"
+active = false
+priority = 7
+count = 1479
+ratio = 6.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-10"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 3
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-88"
+active = true
+priority = 8
+count = 1496
+ratio = 6.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-0"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 4
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-89"
+active = true
+priority = 9
+count = 1513
+ratio = 6.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-1"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 5
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-90"
+active = false
+priority = 0
+count = 1530
+ratio = 6.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-2"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 1
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-91"
+active = true
+priority = 1
+count = 1547
+ratio = 7
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-3"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 2
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-92"
+active = true
+priority = 2
+count = 1564
+ratio = 7.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-4"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 3
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-93"
+active = false
+priority = 3
+count = 1581
+ratio = 7.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-5"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 4
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-94"
+active = true
+priority = 4
+count = 1598
+ratio = 7.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-6"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 5
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-95"
+active = true
+priority = 5
+count = 1615
+ratio = 7.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-7"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 1
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-96"
+active = false
+priority = 6
+count = 1632
+ratio = 7.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-8"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 2
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-97"
+active = true
+priority = 7
+count = 1649
+ratio = 7.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-9"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 3
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-98"
+active = true
+priority = 8
+count = 1666
+ratio = 7.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-10"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 4
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-99"
+active = false
+priority = 9
+count = 1683
+ratio = 7.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-0"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 5
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-100"
+active = true
+priority = 0
+count = 1700
+ratio = 7.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-1"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 1
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-101"
+active = true
+priority = 1
+count = 1717
+ratio = 7.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-2"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 2
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-102"
+active = false
+priority = 2
+count = 1734
+ratio = 7.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-3"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 3
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-103"
+active = true
+priority = 3
+count = 1751
+ratio = 7.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-4"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 4
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-104"
+active = true
+priority = 4
+count = 1768
+ratio = 8
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-5"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 5
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-105"
+active = false
+priority = 5
+count = 1785
+ratio = 8.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-6"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 1
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-106"
+active = true
+priority = 6
+count = 1802
+ratio = 8.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-7"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 2
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-107"
+active = true
+priority = 7
+count = 1819
+ratio = 8.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-8"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 3
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-108"
+active = false
+priority = 8
+count = 1836
+ratio = 8.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-9"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 4
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-109"
+active = true
+priority = 9
+count = 1853
+ratio = 8.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-10"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 5
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-110"
+active = true
+priority = 0
+count = 1870
+ratio = 8.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-0"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 1
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-111"
+active = false
+priority = 1
+count = 1887
+ratio = 8.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-1"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 2
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-112"
+active = true
+priority = 2
+count = 1904
+ratio = 8.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-2"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 3
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-113"
+active = true
+priority = 3
+count = 1921
+ratio = 8.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-3"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 4
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-114"
+active = false
+priority = 4
+count = 1938
+ratio = 8.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-4"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 5
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-115"
+active = true
+priority = 5
+count = 1955
+ratio = 8.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-5"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 1
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-116"
+active = true
+priority = 6
+count = 1972
+ratio = 8.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-6"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 2
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-117"
+active = false
+priority = 7
+count = 1989
+ratio = 9
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-7"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 3
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-118"
+active = true
+priority = 8
+count = 2006
+ratio = 9.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-8"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 4
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-119"
+active = true
+priority = 9
+count = 2023
+ratio = 9.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-9"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 5
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-120"
+active = false
+priority = 0
+count = 2040
+ratio = 9.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-10"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 1
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-121"
+active = true
+priority = 1
+count = 2057
+ratio = 9.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-0"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 2
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-122"
+active = true
+priority = 2
+count = 2074
+ratio = 9.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-1"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 3
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-123"
+active = false
+priority = 3
+count = 2091
+ratio = 9.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-2"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 4
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-124"
+active = true
+priority = 4
+count = 2108
+ratio = 9.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-3"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 5
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-125"
+active = true
+priority = 5
+count = 2125
+ratio = 9.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-4"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 1
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-126"
+active = false
+priority = 6
+count = 2142
+ratio = 9.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-5"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 2
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-127"
+active = true
+priority = 7
+count = 2159
+ratio = 9.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-6"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 3
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-128"
+active = true
+priority = 8
+count = 2176
+ratio = 9.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-7"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 4
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-129"
+active = false
+priority = 9
+count = 2193
+ratio = 9.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-8"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 5
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-130"
+active = true
+priority = 0
+count = 2210
+ratio = 10
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-9"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 1
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-131"
+active = true
+priority = 1
+count = 2227
+ratio = 10.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-10"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 2
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-132"
+active = false
+priority = 2
+count = 2244
+ratio = 10.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-0"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 3
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-133"
+active = true
+priority = 3
+count = 2261
+ratio = 10.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-1"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 4
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-134"
+active = true
+priority = 4
+count = 2278
+ratio = 10.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-2"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 5
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-135"
+active = false
+priority = 5
+count = 2295
+ratio = 10.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-3"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 1
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-136"
+active = true
+priority = 6
+count = 2312
+ratio = 10.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-4"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 2
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-137"
+active = true
+priority = 7
+count = 2329
+ratio = 10.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-5"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 3
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-138"
+active = false
+priority = 8
+count = 2346
+ratio = 10.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-6"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 4
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-139"
+active = true
+priority = 9
+count = 2363
+ratio = 10.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-7"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 5
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-140"
+active = true
+priority = 0
+count = 2380
+ratio = 10.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-8"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 1
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-141"
+active = false
+priority = 1
+count = 2397
+ratio = 10.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-9"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 2
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-142"
+active = true
+priority = 2
+count = 2414
+ratio = 10.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-10"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 3
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-143"
+active = true
+priority = 3
+count = 2431
+ratio = 11
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-0"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 4
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-144"
+active = false
+priority = 4
+count = 2448
+ratio = 11.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-1"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 5
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-145"
+active = true
+priority = 5
+count = 2465
+ratio = 11.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-2"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 1
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-146"
+active = true
+priority = 6
+count = 2482
+ratio = 11.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-3"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 2
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-147"
+active = false
+priority = 7
+count = 2499
+ratio = 11.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-4"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 3
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-148"
+active = true
+priority = 8
+count = 2516
+ratio = 11.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-5"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 4
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-149"
+active = true
+priority = 9
+count = 2533
+ratio = 11.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-6"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 5
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-150"
+active = false
+priority = 0
+count = 2550
+ratio = 11.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-7"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 1
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-151"
+active = true
+priority = 1
+count = 2567
+ratio = 11.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-8"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 2
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-152"
+active = true
+priority = 2
+count = 2584
+ratio = 11.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-9"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 3
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-153"
+active = false
+priority = 3
+count = 2601
+ratio = 11.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-10"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 4
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-154"
+active = true
+priority = 4
+count = 2618
+ratio = 11.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-0"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 5
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-155"
+active = true
+priority = 5
+count = 2635
+ratio = 11.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-1"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 1
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-156"
+active = false
+priority = 6
+count = 2652
+ratio = 12
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-2"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 2
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-157"
+active = true
+priority = 7
+count = 2669
+ratio = 12.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-3"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 3
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-158"
+active = true
+priority = 8
+count = 2686
+ratio = 12.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-4"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 4
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-159"
+active = false
+priority = 9
+count = 2703
+ratio = 12.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-5"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 5
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-160"
+active = true
+priority = 0
+count = 2720
+ratio = 12.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-6"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 1
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-161"
+active = true
+priority = 1
+count = 2737
+ratio = 12.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-7"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 2
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-162"
+active = false
+priority = 2
+count = 2754
+ratio = 12.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-8"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 3
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-163"
+active = true
+priority = 3
+count = 2771
+ratio = 12.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-9"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 4
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-164"
+active = true
+priority = 4
+count = 2788
+ratio = 12.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-10"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 5
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-165"
+active = false
+priority = 5
+count = 2805
+ratio = 12.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-0"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 1
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-166"
+active = true
+priority = 6
+count = 2822
+ratio = 12.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-1"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 2
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-167"
+active = true
+priority = 7
+count = 2839
+ratio = 12.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-2"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 3
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-168"
+active = false
+priority = 8
+count = 2856
+ratio = 12.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-3"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 4
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-169"
+active = true
+priority = 9
+count = 2873
+ratio = 13
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-4"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 5
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-170"
+active = true
+priority = 0
+count = 2890
+ratio = 13.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-5"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 1
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-171"
+active = false
+priority = 1
+count = 2907
+ratio = 13.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-6"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 2
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-172"
+active = true
+priority = 2
+count = 2924
+ratio = 13.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-7"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 3
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-173"
+active = true
+priority = 3
+count = 2941
+ratio = 13.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-8"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 4
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-174"
+active = false
+priority = 4
+count = 2958
+ratio = 13.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-9"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 5
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-175"
+active = true
+priority = 5
+count = 2975
+ratio = 13.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-10"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 1
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-176"
+active = true
+priority = 6
+count = 2992
+ratio = 13.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-0"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 2
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-177"
+active = false
+priority = 7
+count = 3009
+ratio = 13.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-1"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 3
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-178"
+active = true
+priority = 8
+count = 3026
+ratio = 13.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-2"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 4
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-179"
+active = true
+priority = 9
+count = 3043
+ratio = 13.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-3"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 5
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-180"
+active = false
+priority = 0
+count = 3060
+ratio = 13.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-4"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 1
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-181"
+active = true
+priority = 1
+count = 3077
+ratio = 13.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-5"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 2
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-182"
+active = true
+priority = 2
+count = 3094
+ratio = 14
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-6"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 3
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-183"
+active = false
+priority = 3
+count = 3111
+ratio = 14.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-7"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 4
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-184"
+active = true
+priority = 4
+count = 3128
+ratio = 14.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-8"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 5
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-185"
+active = true
+priority = 5
+count = 3145
+ratio = 14.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-9"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 1
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-186"
+active = false
+priority = 6
+count = 3162
+ratio = 14.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-10"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 2
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-187"
+active = true
+priority = 7
+count = 3179
+ratio = 14.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-0"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 3
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-188"
+active = true
+priority = 8
+count = 3196
+ratio = 14.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-1"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 4
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-189"
+active = false
+priority = 9
+count = 3213
+ratio = 14.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-2"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 5
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-190"
+active = true
+priority = 0
+count = 3230
+ratio = 14.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-3"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 1
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-191"
+active = true
+priority = 1
+count = 3247
+ratio = 14.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-4"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 2
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-192"
+active = false
+priority = 2
+count = 3264
+ratio = 14.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-5"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 3
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-193"
+active = true
+priority = 3
+count = 3281
+ratio = 14.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-6"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 4
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-194"
+active = true
+priority = 4
+count = 3298
+ratio = 14.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-7"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 5
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-195"
+active = false
+priority = 5
+count = 3315
+ratio = 15
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-8"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 1
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-196"
+active = true
+priority = 6
+count = 3332
+ratio = 15.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-9"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 2
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-197"
+active = true
+priority = 7
+count = 3349
+ratio = 15.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-10"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 3
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-198"
+active = false
+priority = 8
+count = 3366
+ratio = 15.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-0"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 4
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-199"
+active = true
+priority = 9
+count = 3383
+ratio = 15.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-1"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 5
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-200"
+active = true
+priority = 0
+count = 3400
+ratio = 15.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-2"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 1
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-201"
+active = false
+priority = 1
+count = 3417
+ratio = 15.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-3"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 2
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-202"
+active = true
+priority = 2
+count = 3434
+ratio = 15.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-4"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 3
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-203"
+active = true
+priority = 3
+count = 3451
+ratio = 15.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-5"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 4
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-204"
+active = false
+priority = 4
+count = 3468
+ratio = 15.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-6"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 5
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-205"
+active = true
+priority = 5
+count = 3485
+ratio = 15.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-7"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 1
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-206"
+active = true
+priority = 6
+count = 3502
+ratio = 15.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-8"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 2
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-207"
+active = false
+priority = 7
+count = 3519
+ratio = 15.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-9"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 3
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-208"
+active = true
+priority = 8
+count = 3536
+ratio = 16
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-10"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 4
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-209"
+active = true
+priority = 9
+count = 3553
+ratio = 16.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-0"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 5
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-210"
+active = false
+priority = 0
+count = 3570
+ratio = 16.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-1"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 1
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-211"
+active = true
+priority = 1
+count = 3587
+ratio = 16.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-2"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 2
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-212"
+active = true
+priority = 2
+count = 3604
+ratio = 16.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-3"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 3
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-213"
+active = false
+priority = 3
+count = 3621
+ratio = 16.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-4"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 4
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-214"
+active = true
+priority = 4
+count = 3638
+ratio = 16.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-5"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 5
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-215"
+active = true
+priority = 5
+count = 3655
+ratio = 16.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-6"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 1
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-216"
+active = false
+priority = 6
+count = 3672
+ratio = 16.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-7"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 2
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-217"
+active = true
+priority = 7
+count = 3689
+ratio = 16.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-8"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 3
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-218"
+active = true
+priority = 8
+count = 3706
+ratio = 16.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-9"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 4
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-219"
+active = false
+priority = 9
+count = 3723
+ratio = 16.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-10"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 5
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-220"
+active = true
+priority = 0
+count = 3740
+ratio = 16.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-0"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 1
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-221"
+active = true
+priority = 1
+count = 3757
+ratio = 17
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-1"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 2
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-222"
+active = false
+priority = 2
+count = 3774
+ratio = 17.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-2"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 3
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-223"
+active = true
+priority = 3
+count = 3791
+ratio = 17.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-3"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 4
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-224"
+active = true
+priority = 4
+count = 3808
+ratio = 17.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-4"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 5
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-225"
+active = false
+priority = 5
+count = 3825
+ratio = 17.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-5"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 1
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-226"
+active = true
+priority = 6
+count = 3842
+ratio = 17.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-6"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 2
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-227"
+active = true
+priority = 7
+count = 3859
+ratio = 17.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-7"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 3
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-228"
+active = false
+priority = 8
+count = 3876
+ratio = 17.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-8"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 4
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-229"
+active = true
+priority = 9
+count = 3893
+ratio = 17.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-9"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 5
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-230"
+active = true
+priority = 0
+count = 3910
+ratio = 17.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-10"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 1
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-231"
+active = false
+priority = 1
+count = 3927
+ratio = 17.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-0"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 2
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-232"
+active = true
+priority = 2
+count = 3944
+ratio = 17.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-1"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 3
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-233"
+active = true
+priority = 3
+count = 3961
+ratio = 17.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-2"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 4
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-234"
+active = false
+priority = 4
+count = 3978
+ratio = 18
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-3"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 5
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-235"
+active = true
+priority = 5
+count = 3995
+ratio = 18.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-4"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 1
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-236"
+active = true
+priority = 6
+count = 4012
+ratio = 18.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-5"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 2
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-237"
+active = false
+priority = 7
+count = 4029
+ratio = 18.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-6"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 3
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-238"
+active = true
+priority = 8
+count = 4046
+ratio = 18.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-7"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 4
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-239"
+active = true
+priority = 9
+count = 4063
+ratio = 18.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-8"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 5
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-240"
+active = false
+priority = 0
+count = 4080
+ratio = 18.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-9"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 1
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-241"
+active = true
+priority = 1
+count = 4097
+ratio = 18.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-10"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 2
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-242"
+active = true
+priority = 2
+count = 4114
+ratio = 18.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-0"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 3
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-243"
+active = false
+priority = 3
+count = 4131
+ratio = 18.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-1"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 4
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-244"
+active = true
+priority = 4
+count = 4148
+ratio = 18.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-2"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 5
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-245"
+active = true
+priority = 5
+count = 4165
+ratio = 18.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-3"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 1
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-246"
+active = false
+priority = 6
+count = 4182
+ratio = 18.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-4"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 2
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-247"
+active = true
+priority = 7
+count = 4199
+ratio = 19
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-5"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 3
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-248"
+active = true
+priority = 8
+count = 4216
+ratio = 19.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-6"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 4
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-249"
+active = false
+priority = 9
+count = 4233
+ratio = 19.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-7"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 5
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-250"
+active = true
+priority = 0
+count = 4250
+ratio = 19.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-8"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 1
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-251"
+active = true
+priority = 1
+count = 4267
+ratio = 19.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-9"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 2
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-252"
+active = false
+priority = 2
+count = 4284
+ratio = 19.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-10"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 3
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-253"
+active = true
+priority = 3
+count = 4301
+ratio = 19.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-0"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 4
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-254"
+active = true
+priority = 4
+count = 4318
+ratio = 19.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-1"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 5
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-255"
+active = false
+priority = 5
+count = 4335
+ratio = 19.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-2"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 1
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-256"
+active = true
+priority = 6
+count = 4352
+ratio = 19.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-3"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 2
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-257"
+active = true
+priority = 7
+count = 4369
+ratio = 19.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-4"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 3
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-258"
+active = false
+priority = 8
+count = 4386
+ratio = 19.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-5"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 4
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-259"
+active = true
+priority = 9
+count = 4403
+ratio = 19.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-6"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 5
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-260"
+active = true
+priority = 0
+count = 4420
+ratio = 20
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-7"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 1
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-261"
+active = false
+priority = 1
+count = 4437
+ratio = 20.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-8"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 2
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-262"
+active = true
+priority = 2
+count = 4454
+ratio = 20.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-9"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 3
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-263"
+active = true
+priority = 3
+count = 4471
+ratio = 20.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-10"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 4
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-264"
+active = false
+priority = 4
+count = 4488
+ratio = 20.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-0"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 5
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-265"
+active = true
+priority = 5
+count = 4505
+ratio = 20.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-1"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 1
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-266"
+active = true
+priority = 6
+count = 4522
+ratio = 20.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-2"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 2
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-267"
+active = false
+priority = 7
+count = 4539
+ratio = 20.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-3"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 3
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-268"
+active = true
+priority = 8
+count = 4556
+ratio = 20.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-4"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 4
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-269"
+active = true
+priority = 9
+count = 4573
+ratio = 20.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-5"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 5
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-270"
+active = false
+priority = 0
+count = 4590
+ratio = 20.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-6"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 1
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-271"
+active = true
+priority = 1
+count = 4607
+ratio = 20.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-7"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 2
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-272"
+active = true
+priority = 2
+count = 4624
+ratio = 20.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-8"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 3
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-273"
+active = false
+priority = 3
+count = 4641
+ratio = 21
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-9"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 4
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-274"
+active = true
+priority = 4
+count = 4658
+ratio = 21.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-10"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 5
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-275"
+active = true
+priority = 5
+count = 4675
+ratio = 21.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-0"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 1
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-276"
+active = false
+priority = 6
+count = 4692
+ratio = 21.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-1"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 2
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-277"
+active = true
+priority = 7
+count = 4709
+ratio = 21.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-2"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 3
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-278"
+active = true
+priority = 8
+count = 4726
+ratio = 21.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-3"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 4
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-279"
+active = false
+priority = 9
+count = 4743
+ratio = 21.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-4"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 5
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-280"
+active = true
+priority = 0
+count = 4760
+ratio = 21.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-5"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 1
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-281"
+active = true
+priority = 1
+count = 4777
+ratio = 21.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-6"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 2
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-282"
+active = false
+priority = 2
+count = 4794
+ratio = 21.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-7"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 3
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-283"
+active = true
+priority = 3
+count = 4811
+ratio = 21.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-8"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 4
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-284"
+active = true
+priority = 4
+count = 4828
+ratio = 21.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-9"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 5
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-285"
+active = false
+priority = 5
+count = 4845
+ratio = 21.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-10"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 1
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-286"
+active = true
+priority = 6
+count = 4862
+ratio = 22
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-0"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 2
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-287"
+active = true
+priority = 7
+count = 4879
+ratio = 22.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-1"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 3
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-288"
+active = false
+priority = 8
+count = 4896
+ratio = 22.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-2"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 4
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-289"
+active = true
+priority = 9
+count = 4913
+ratio = 22.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-3"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 5
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-290"
+active = true
+priority = 0
+count = 4930
+ratio = 22.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-4"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 1
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-291"
+active = false
+priority = 1
+count = 4947
+ratio = 22.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-5"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 2
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-292"
+active = true
+priority = 2
+count = 4964
+ratio = 22.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-6"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 3
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-293"
+active = true
+priority = 3
+count = 4981
+ratio = 22.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-7"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 4
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-294"
+active = false
+priority = 4
+count = 4998
+ratio = 22.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-8"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 5
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-295"
+active = true
+priority = 5
+count = 5015
+ratio = 22.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-9"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 1
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-296"
+active = true
+priority = 6
+count = 5032
+ratio = 22.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-10"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 2
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-297"
+active = false
+priority = 7
+count = 5049
+ratio = 22.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-0"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 3
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-298"
+active = true
+priority = 8
+count = 5066
+ratio = 22.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-1"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 4
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-299"
+active = true
+priority = 9
+count = 5083
+ratio = 23
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-2"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 5
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-300"
+active = false
+priority = 0
+count = 5100
+ratio = 23.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-3"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 1
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-301"
+active = true
+priority = 1
+count = 5117
+ratio = 23.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-4"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 2
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-302"
+active = true
+priority = 2
+count = 5134
+ratio = 23.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-5"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 3
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-303"
+active = false
+priority = 3
+count = 5151
+ratio = 23.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-6"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 4
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-304"
+active = true
+priority = 4
+count = 5168
+ratio = 23.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-7"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 5
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-305"
+active = true
+priority = 5
+count = 5185
+ratio = 23.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-8"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 1
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-306"
+active = false
+priority = 6
+count = 5202
+ratio = 23.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-9"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 2
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-307"
+active = true
+priority = 7
+count = 5219
+ratio = 23.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-10"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 3
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-308"
+active = true
+priority = 8
+count = 5236
+ratio = 23.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-0"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 4
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-309"
+active = false
+priority = 9
+count = 5253
+ratio = 23.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-1"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 5
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-310"
+active = true
+priority = 0
+count = 5270
+ratio = 23.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-2"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 1
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-311"
+active = true
+priority = 1
+count = 5287
+ratio = 23.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-3"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 2
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-312"
+active = false
+priority = 2
+count = 5304
+ratio = 24
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-4"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 3
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-313"
+active = true
+priority = 3
+count = 5321
+ratio = 24.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-5"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 4
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-314"
+active = true
+priority = 4
+count = 5338
+ratio = 24.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-6"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 5
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-315"
+active = false
+priority = 5
+count = 5355
+ratio = 24.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-7"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 1
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-316"
+active = true
+priority = 6
+count = 5372
+ratio = 24.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-8"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 2
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-317"
+active = true
+priority = 7
+count = 5389
+ratio = 24.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-9"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 3
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-318"
+active = false
+priority = 8
+count = 5406
+ratio = 24.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-10"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 4
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-319"
+active = true
+priority = 9
+count = 5423
+ratio = 24.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-0"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 5
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-320"
+active = true
+priority = 0
+count = 5440
+ratio = 24.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-1"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 1
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-321"
+active = false
+priority = 1
+count = 5457
+ratio = 24.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-2"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 2
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-322"
+active = true
+priority = 2
+count = 5474
+ratio = 24.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-3"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 3
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-323"
+active = true
+priority = 3
+count = 5491
+ratio = 24.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-4"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 4
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-324"
+active = false
+priority = 4
+count = 5508
+ratio = 24.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-5"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 5
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-325"
+active = true
+priority = 5
+count = 5525
+ratio = 25
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-6"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 1
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-326"
+active = true
+priority = 6
+count = 5542
+ratio = 25.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-7"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 2
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-327"
+active = false
+priority = 7
+count = 5559
+ratio = 25.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-8"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 3
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-328"
+active = true
+priority = 8
+count = 5576
+ratio = 25.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-9"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 4
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-329"
+active = true
+priority = 9
+count = 5593
+ratio = 25.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-10"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 5
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-330"
+active = false
+priority = 0
+count = 5610
+ratio = 25.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-0"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 1
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-331"
+active = true
+priority = 1
+count = 5627
+ratio = 25.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-1"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 2
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-332"
+active = true
+priority = 2
+count = 5644
+ratio = 25.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-2"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 3
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-333"
+active = false
+priority = 3
+count = 5661
+ratio = 25.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-3"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 4
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-334"
+active = true
+priority = 4
+count = 5678
+ratio = 25.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-4"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 5
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-335"
+active = true
+priority = 5
+count = 5695
+ratio = 25.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-5"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 1
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-336"
+active = false
+priority = 6
+count = 5712
+ratio = 25.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-6"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 2
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-337"
+active = true
+priority = 7
+count = 5729
+ratio = 25.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-7"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 3
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-338"
+active = true
+priority = 8
+count = 5746
+ratio = 26
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-8"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 4
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-339"
+active = false
+priority = 9
+count = 5763
+ratio = 26.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-9"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 5
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-340"
+active = true
+priority = 0
+count = 5780
+ratio = 26.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-10"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 1
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-341"
+active = true
+priority = 1
+count = 5797
+ratio = 26.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-0"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 2
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-342"
+active = false
+priority = 2
+count = 5814
+ratio = 26.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-1"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 3
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-343"
+active = true
+priority = 3
+count = 5831
+ratio = 26.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-2"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 4
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-344"
+active = true
+priority = 4
+count = 5848
+ratio = 26.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-3"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 5
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-345"
+active = false
+priority = 5
+count = 5865
+ratio = 26.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-4"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 1
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-346"
+active = true
+priority = 6
+count = 5882
+ratio = 26.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-5"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 2
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-347"
+active = true
+priority = 7
+count = 5899
+ratio = 26.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-6"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 3
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-348"
+active = false
+priority = 8
+count = 5916
+ratio = 26.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-7"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 4
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-349"
+active = true
+priority = 9
+count = 5933
+ratio = 26.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-8"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 5
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-350"
+active = true
+priority = 0
+count = 5950
+ratio = 26.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-9"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 1
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-351"
+active = false
+priority = 1
+count = 5967
+ratio = 27
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-10"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 2
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-352"
+active = true
+priority = 2
+count = 5984
+ratio = 27.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-0"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 3
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-353"
+active = true
+priority = 3
+count = 6001
+ratio = 27.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-1"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 4
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-354"
+active = false
+priority = 4
+count = 6018
+ratio = 27.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-2"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 5
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-355"
+active = true
+priority = 5
+count = 6035
+ratio = 27.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-3"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 1
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-356"
+active = true
+priority = 6
+count = 6052
+ratio = 27.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-4"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 2
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-357"
+active = false
+priority = 7
+count = 6069
+ratio = 27.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-5"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 3
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-358"
+active = true
+priority = 8
+count = 6086
+ratio = 27.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-6"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 4
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-359"
+active = true
+priority = 9
+count = 6103
+ratio = 27.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-7"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 5
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-360"
+active = false
+priority = 0
+count = 6120
+ratio = 27.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-8"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 1
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-361"
+active = true
+priority = 1
+count = 6137
+ratio = 27.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-9"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 2
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-362"
+active = true
+priority = 2
+count = 6154
+ratio = 27.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-10"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 3
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-363"
+active = false
+priority = 3
+count = 6171
+ratio = 27.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-0"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 4
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-364"
+active = true
+priority = 4
+count = 6188
+ratio = 28
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-1"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 5
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-365"
+active = true
+priority = 5
+count = 6205
+ratio = 28.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-2"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 1
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-366"
+active = false
+priority = 6
+count = 6222
+ratio = 28.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-2", "group-3"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 2
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-367"
+active = true
+priority = 7
+count = 6239
+ratio = 28.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-3", "group-4"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 3
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-368"
+active = true
+priority = 8
+count = 6256
+ratio = 28.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-4", "group-5"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 4
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-369"
+active = false
+priority = 9
+count = 6273
+ratio = 28.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-5", "group-6"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 5
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-370"
+active = true
+priority = 0
+count = 6290
+ratio = 28.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-6", "group-7"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 1
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-371"
+active = true
+priority = 1
+count = 6307
+ratio = 28.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-0", "group-8"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 2
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-372"
+active = false
+priority = 2
+count = 6324
+ratio = 28.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-1", "group-9"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 3
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-373"
+active = true
+priority = 3
+count = 6341
+ratio = 28.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-2", "group-10"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 4
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-374"
+active = true
+priority = 4
+count = 6358
+ratio = 28.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-3", "group-0"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 5
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-375"
+active = false
+priority = 5
+count = 6375
+ratio = 28.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-4", "group-1"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 1
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-376"
+active = true
+priority = 6
+count = 6392
+ratio = 28.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-5", "group-2"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 2
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-377"
+active = true
+priority = 7
+count = 6409
+ratio = 29
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-6", "group-3"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 3
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-378"
+active = false
+priority = 8
+count = 6426
+ratio = 29.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-0", "group-4"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 4
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-379"
+active = true
+priority = 9
+count = 6443
+ratio = 29.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-1", "group-5"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 5
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-380"
+active = true
+priority = 0
+count = 6460
+ratio = 29.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-2", "group-6"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 1
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-381"
+active = false
+priority = 1
+count = 6477
+ratio = 29.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-3", "group-7"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 2
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-382"
+active = true
+priority = 2
+count = 6494
+ratio = 29.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-4", "group-8"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 3
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-383"
+active = true
+priority = 3
+count = 6511
+ratio = 29.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-5", "group-9"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 4
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-384"
+active = false
+priority = 4
+count = 6528
+ratio = 29.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-6", "group-10"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 5
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+
+[[records]]
+id = "record-385"
+active = true
+priority = 5
+count = 6545
+ratio = 29.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-0", "group-0"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 1
+[records.limits]
+cpu = 0.75
+memory_mb = 128
+
+[[records]]
+id = "record-386"
+active = true
+priority = 6
+count = 6562
+ratio = 29.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-1", "group-1"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 2
+[records.limits]
+cpu = 1
+memory_mb = 192
+
+[[records]]
+id = "record-387"
+active = false
+priority = 7
+count = 6579
+ratio = 29.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-2", "group-2"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 3
+[records.limits]
+cpu = 1.25
+memory_mb = 256
+
+[[records]]
+id = "record-388"
+active = true
+priority = 8
+count = 6596
+ratio = 29.846154
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-3", "group-3"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 4
+[records.limits]
+cpu = 1.5
+memory_mb = 320
+
+[[records]]
+id = "record-389"
+active = true
+priority = 9
+count = 6613
+ratio = 29.923077
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-4", "group-4"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 5
+[records.limits]
+cpu = 1.75
+memory_mb = 384
+
+[[records]]
+id = "record-390"
+active = false
+priority = 0
+count = 6630
+ratio = 30
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-5", "group-5"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 1
+[records.limits]
+cpu = 2
+memory_mb = 448
+
+[[records]]
+id = "record-391"
+active = true
+priority = 1
+count = 6647
+ratio = 30.076923
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-6", "group-6"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 2
+[records.limits]
+cpu = 2.25
+memory_mb = 512
+
+[[records]]
+id = "record-392"
+active = true
+priority = 2
+count = 6664
+ratio = 30.153846
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-0", "group-7"]
+[records.settings]
+timeout_ms = 600
+max_attempts = 3
+[records.limits]
+cpu = 0.5
+memory_mb = 576
+
+[[records]]
+id = "record-393"
+active = false
+priority = 3
+count = 6681
+ratio = 30.230769
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-1", "group-8"]
+[records.settings]
+timeout_ms = 700
+max_attempts = 4
+[records.limits]
+cpu = 0.75
+memory_mb = 640
+
+[[records]]
+id = "record-394"
+active = true
+priority = 4
+count = 6698
+ratio = 30.307692
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-2", "group-9"]
+[records.settings]
+timeout_ms = 800
+max_attempts = 5
+[records.limits]
+cpu = 1
+memory_mb = 704
+
+[[records]]
+id = "record-395"
+active = true
+priority = 5
+count = 6715
+ratio = 30.384615
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-3", "group-10"]
+[records.settings]
+timeout_ms = 900
+max_attempts = 1
+[records.limits]
+cpu = 1.25
+memory_mb = 768
+
+[[records]]
+id = "record-396"
+active = false
+priority = 6
+count = 6732
+ratio = 30.461538
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-1", "zone-4", "group-0"]
+[records.settings]
+timeout_ms = 100
+max_attempts = 2
+[records.limits]
+cpu = 1.5
+memory_mb = 832
+
+[[records]]
+id = "record-397"
+active = true
+priority = 7
+count = 6749
+ratio = 30.538462
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-2", "zone-5", "group-1"]
+[records.settings]
+timeout_ms = 200
+max_attempts = 3
+[records.limits]
+cpu = 1.75
+memory_mb = 896
+
+[[records]]
+id = "record-398"
+active = true
+priority = 8
+count = 6766
+ratio = 30.615385
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-3", "zone-6", "group-2"]
+[records.settings]
+timeout_ms = 300
+max_attempts = 4
+[records.limits]
+cpu = 2
+memory_mb = 960
+
+[[records]]
+id = "record-399"
+active = false
+priority = 9
+count = 6783
+ratio = 30.692308
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-4", "zone-0", "group-3"]
+[records.settings]
+timeout_ms = 400
+max_attempts = 5
+[records.limits]
+cpu = 2.25
+memory_mb = 1024
+
+[[records]]
+id = "record-400"
+active = true
+priority = 0
+count = 6800
+ratio = 30.769231
+created_at = 2025-01-01T00:00:00Z
+tags = ["tag-0", "zone-1", "group-4"]
+[records.settings]
+timeout_ms = 500
+max_attempts = 1
+[records.limits]
+cpu = 0.5
+memory_mb = 64
+

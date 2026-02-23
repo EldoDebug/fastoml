@@ -1,0 +1,13 @@
+title = "FastOML Demo"
+enabled = true
+max_retries = 5
+threshold = 0.75
+tags = ["toml", "example", "release"]
+
+[server]
+host = "127.0.0.1"
+port = 8080
+
+[owner]
+name = "fastoml"
+joined_at = 2024-11-30T10:20:30Z

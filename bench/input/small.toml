@@ -1,0 +1,10 @@
+title = "small benchmark fixture"
+
+[owner]
+name = "Jane Doe"
+dob = 1979-05-27T07:32:00Z
+
+[database]
+enabled = true
+ports = [8000, 8001, 8002]
+temp_targets = ["alpha", "beta", "gamma"]

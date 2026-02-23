@@ -1,0 +1,9 @@
+title = "invalid benchmark fixture"
+
+[service]
+name = "broken"
+port = 8080
+enabled = true
+
+[service
+mode = "broken-header"

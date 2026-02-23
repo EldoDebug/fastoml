@@ -1,0 +1,88 @@
+title = "medium benchmark fixture"
+generated_by = "hand-written"
+
+[meta]
+version = 1
+environment = "staging"
+features = ["auth", "metrics", "jobs", "alerts", "audit", "sso"]
+
+[service]
+name = "order-api"
+host = "127.0.0.1"
+port = 8080
+workers = 8
+timeout_ms = 2500
+
+[service.logging]
+level = "info"
+format = "json"
+include_source = true
+redacted_keys = ["password", "token", "secret"]
+
+[service.auth]
+issuer = "https://issuer.example.com"
+audience = "order-api"
+clock_skew_sec = 30
+
+[database]
+url = "postgres://postgres:postgres@localhost:5432/order"
+pool_min = 5
+pool_max = 20
+statement_timeout_ms = 12000
+
+[[database.replicas]]
+name = "db-replica-01"
+region = "us-east-1"
+priority = 1
+
+[[database.replicas]]
+name = "db-replica-02"
+region = "us-west-2"
+priority = 2
+
+[redis]
+host = "127.0.0.1"
+port = 6379
+db = 2
+tls = false
+
+[jobs.cleanup]
+cron = "0 */6 * * *"
+enabled = true
+max_retries = 3
+
+[jobs.report]
+cron = "0 5 * * *"
+enabled = true
+max_retries = 5
+
+[limits]
+max_connections = 10000
+max_payload_bytes = 1048576
+max_items_per_request = 500
+
+[limits.per_tenant]
+starter = { requests_per_min = 600, burst = 100 }
+pro = { requests_per_min = 3000, burst = 400 }
+enterprise = { requests_per_min = 12000, burst = 1500 }
+
+[[tenants]]
+id = "tenant-001"
+name = "Acme"
+enabled = true
+quota_mb = 2048
+tags = ["priority", "finance", "legacy"]
+
+[[tenants]]
+id = "tenant-002"
+name = "Globex"
+enabled = true
+quota_mb = 4096
+tags = ["beta", "europe"]
+
+[[tenants]]
+id = "tenant-003"
+name = "Initech"
+enabled = false
+quota_mb = 1024
+tags = ["on-hold"]

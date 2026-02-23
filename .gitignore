@@ -1,0 +1,8 @@
+build/
+build*/
+_tmp_toml_*
+_tmp_toml_repo/
+_tmp_toml_test_repo/
+
+benchmark/results/*
+!benchmark/results/schema.json
