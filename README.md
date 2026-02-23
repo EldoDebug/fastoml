@@ -210,6 +210,10 @@ Parse throughput measured with [Google Benchmark](https://github.com/google/benc
 
 > All parsers create and destroy their parser state in every iteration for a fair comparison. I/O is excluded — only the parse call is measured.
 
+## C++ Wrapper
+
+[fastoml-cpp](https://github.com/EldoDebug/fastoml-cpp) — A C++23 wrapper providing dot-notation access, fluent builder API, and compile-time struct mapping.
+
 ## Building
 
 ### Requirements
